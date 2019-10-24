@@ -2,6 +2,8 @@ package deqo.emau.mysimplestack;
 
 import java.util.EmptyStackException;
 
+// Commentaire pour exigence
+
 public interface SimpleStack {
 
     //Tests if this stack is empty
