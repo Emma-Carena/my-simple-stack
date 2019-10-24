@@ -22,8 +22,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -38,6 +38,7 @@
                 </plugin>
 
                 <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.0.2</version>
@@ -45,17 +46,17 @@
 
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>3.8.0</version>
                 </plugin>
 
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.1</version>
                 </plugin>
 
                 <plugin>
-                  <artifactId>maven-jar-plugin</artifactId>
-                  <version>3.0.2</version>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.0.2</version>
                 </plugin>
 
                 <plugin>
@@ -78,11 +79,18 @@
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
                 </plugin>
-
             </plugins>
         </pluginManagement>
 
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>@{jacoco.surefire.argLine}</argLine>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -99,7 +107,7 @@
                     </execution>
                     <execution>
                         <id>post-unit-test</id>
-                        <phase>pre-site</phase>
+                        <phase>pre-site</phase> <!-- ou <phase>test</phase> p.ex. -->
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -107,7 +115,6 @@
                 </executions>
             </plugin>
         </plugins>
-
     </build>
 
     <reporting>
@@ -138,18 +145,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.8</version>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.20.1</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <reportSets>
@@ -159,6 +154,13 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+            </plugin>
+
+            <!-- Optional: -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.20.1</version>
             </plugin>
         </plugins>
     </reporting>
