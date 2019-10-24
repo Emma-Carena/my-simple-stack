@@ -2,6 +2,8 @@ package deqo.emau.mysimplestack;
 
 public class Item {
 
+    // Commentaire exigence 2
+
     private Object value;
 
     Item(Object value) {
